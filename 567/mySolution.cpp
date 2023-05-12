@@ -1,11 +1,11 @@
-#include <array>
 #include <string>
 
 using namespace std;
+
 class Solution {
 public:
     bool checkInclusion(const string& s1, const string& s2) {
-        array<int, 26> m = {0};
+        int m[26] = {0};
         const int n = s1.size();
         for (int i = 0; i < n; ++i) {
             ++m[s1[i] - 'a'];
