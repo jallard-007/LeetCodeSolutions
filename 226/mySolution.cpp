@@ -1,4 +1,6 @@
-#include <alloca.h>
+#include <vector>
+
+using namespace std;
 
 // Definition for a binary tree node.
 struct TreeNode {
@@ -11,6 +13,33 @@ struct TreeNode {
 };
 
 class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        vector<TreeNode *> stack;
+        stack.push_back(root);
+        while (stack.size() > 0) {
+            TreeNode* curr = stack.back();
+            stack.pop_back();
+            while (curr) {
+              // swap left and right nodes
+              TreeNode *temp = curr->right;
+              curr->right = curr->left;
+              curr->left = temp;
+              if (curr->right) {
+                // push right node on stack
+                stack.push_back(curr->right);
+              }
+              // go to left node
+              curr = curr->left;
+            }
+        }
+        return root;
+    }
+};
+
+#include <alloca.h>
+
+class Solution1 {
 public:
     TreeNode* invertTree(TreeNode* root) {
         if (!root) {
