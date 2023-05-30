@@ -31,7 +31,9 @@ public:
                 if (curr->right) {
                     // push right node on stack
                     if (memPos == memSize) {
-                        // this would work properly if alloca did as expected
+                        // this would work properly if alloca did as i expected
+                        // expected: successive alloca calls would "grow" the array
+                        // but since the stack grows down, and alloca does not allocate the specified amount of memory, this fails.
                         alloca(memSize * sizeof (TreeNode *));
                         memSize += memSize;
                     }
