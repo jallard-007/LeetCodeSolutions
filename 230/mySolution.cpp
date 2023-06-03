@@ -46,3 +46,25 @@ public:
         return -1;
     }
 };
+
+class Solution1 {
+public:
+    int count = 0;
+    int kthSmallest(TreeNode* root, int k) {
+        return helper(root, k)->val;
+    }
+
+    TreeNode* helper(TreeNode* root, int k) {
+        if (!root) {
+            ++count;
+            return nullptr;
+        }
+        if (TreeNode *node = helper(root->left, k)) {
+            return node;
+        }
+        if (count == k) {
+            return root;
+        }
+        return helper(root->right, k);
+    }
+};
